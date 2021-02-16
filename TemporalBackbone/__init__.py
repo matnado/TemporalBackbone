@@ -14,7 +14,7 @@ def Read_sample():
     url = 'https://github.com/matnado/TemporalBackbone/blob/main/TemporalBackbone/Sample.csv'
     #request = requests.get(url)
     #print(request.text)
-    return df = pd.read_csv(url)
+    return pd.read_csv(url, sep=";")
 
 def Temporal_Backbone(dataold, time_step = 60.*60.*24., is_directed=True, Bonferroni = True, alpha = 0.01):
     '''
