@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="TemporalBackbone-matnado", # Replace with your own username
+    name="TemporalBackbone",
     version="0.0.1",
     author="Matthieu Nadini",
     author_email="matthieu.nadini@gmail.com",
