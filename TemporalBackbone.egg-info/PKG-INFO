@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: TemporalBackbone
-Version: 0.0.1
+Version: 1.0.0
 Summary: A tool to detect the backbone in temporal networks
 Home-page: https://github.com/matnado/TemporalBackbone
 Author: Matthieu Nadini
@@ -8,9 +8,28 @@ Author-email: matthieu.nadini@gmail.com
 License: UNKNOWN
 Description: # A tool to detect the backbone in temporal networks
         
-        The computational time is O(N_E T^2), where N_E are the number unique edges in the network and T the number of time steps.
+        An efficient and fast tool to detect the backbone network in temporal networks. For accurate results, it should be applied to networks with at least 1,000 nodes.
+        
+        The computational time is O(N_E T^2), where N_E are the number unique edges in the network and T the number of time steps. 
         
         For sparse networks (like most of the large networks), the computational time is O(N T^2)
+        
+        
+        How to install it 
+        
+        ```
+        pip install TemporalBackbone
+        ```
+        
+        How to run the package
+        
+        ```
+        import TemporalBackbone as TB
+        
+        data = TB.Read_sample()
+        TB.Temporal_Backbone(data)
+        ```
+        
             
         Input: 
         - pandas dataframe with three columns: ***node1, node2, time*** *(order is important)*
@@ -21,6 +40,8 @@ Description: # A tool to detect the backbone in temporal networks
             
         Output:
         - list with the significant links    
+        
+        
         
         
         ### Please cite
