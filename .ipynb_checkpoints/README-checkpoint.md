@@ -1,6 +1,7 @@
 # A tool to detect the backbone in temporal networks
 
-For sparse networks, the computational time is O(N_E T^2), where N_E are the number unique edges in the network and T the number of time steps.
+The computational time is O(N_E T^2), where N_E are the number unique edges in the network and T the number of time steps.
+
 For sparse networks (like most of the large networks), the computational time is O(N T^2)
     
 Input: 
@@ -13,6 +14,8 @@ Input:
 Output:
 - list with the significant links    
 
+
+### Please cite
 
 The methodology is first introduced in 
 *Nadini, M., Bongiorno, C., Rizzo, A., & Porfiri, M. (2020). **Detecting network backbones against time variations in node properties.** Nonlinear Dynamics, 99(1), 855-878.*
