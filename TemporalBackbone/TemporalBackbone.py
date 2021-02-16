@@ -9,7 +9,7 @@ import sys
 
 
 def Read_sample():
-    return pd.read_csv('./Sample.csv.gz')
+    return pd.read_csv('Sample.csv.gz')
 
 def Temporal_Backbone(dataold, time_step = 60.*60.*24., is_directed=True, Bonferroni = True, alpha = 0.01):
     '''
