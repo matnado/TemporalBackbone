@@ -6,15 +6,10 @@ import time
 import scipy.stats as stats
 from astropy.stats import bayesian_blocks
 import sys
-#import requests
 
 
 def Read_sample():
-    #return pd.read_csv('https://github.com/matnado/TemporalBackbone/blob/main/TemporalBackbone/Sample.csv.gz')
-    url = 'https://github.com/matnado/TemporalBackbone/blob/main/TemporalBackbone/Sample.csv'
-    #request = requests.get(url)
-    #print(request.text)
-    return df = pd.read_csv(url)
+    return pd.read_csv('https://github.com/matnado/TemporalBackbone/blob/main/TemporalBackbone/Sample.csv.gz')
 
 def Temporal_Backbone(dataold, time_step = 60.*60.*24., is_directed=True, Bonferroni = True, alpha = 0.01):
     '''
@@ -164,3 +159,5 @@ def transform_time(data, labels, time_step):
     data[labels[2]] = data[labels[2]]/time_step
     data[labels[2]] = data[labels[2]].astype(int)  
     return data
+
+

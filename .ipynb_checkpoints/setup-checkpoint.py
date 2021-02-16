@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="TemporalBackbone",
-    version="1.0.5",
+    version="1.0.7",
     author="Matthieu Nadini",
     author_email="matthieu.nadini@gmail.com",
     description="A tool to detect the backbone in temporal networks",
