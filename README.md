@@ -5,11 +5,11 @@ The computational time is O(N_E T^2), where N_E are the number unique edges in t
 For sparse networks (like most of the large networks), the computational time is O(N T^2)
     
 Input: 
-- pandas dataframe with three columns (order is important): node1, node2, time
-- Minimum length of the interval (time step is taken from the data): default 1 day
-- whether the network is directed or not: default True
-- whether to use the Bonferroni correction: default True
-- threshold to determine the significance of a link: default 0.01
+- pandas dataframe with three columns: *node1, node2, time* **Note: order is important)**
+- Minimum length of the interval: *default 1 day **Note: time step is taken from the data)***
+- whether the network is directed or not: *default True*
+- whether to use the Bonferroni correction: *default True*
+- threshold to determine the significance of a link: *default 0.01*
     
 Output:
 - list with the significant links    
