@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: TemporalBackbone-matnado
+Version: 0.0.1
+Summary: A tool to detect the backbone in temporal networks
+Home-page: https://github.com/matnado/TemporalBackbone
+Author: Matthieu Nadini
+Author-email: matthieu.nadini@gmail.com
+License: UNKNOWN
+Description: # TemporalBackbone
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3.0
+Classifier: Operating System :: Linux
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown

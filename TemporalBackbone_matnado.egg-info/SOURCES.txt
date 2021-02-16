@@ -1,0 +1,6 @@
+README.md
+setup.py
+TemporalBackbone_matnado.egg-info/PKG-INFO
+TemporalBackbone_matnado.egg-info/SOURCES.txt
+TemporalBackbone_matnado.egg-info/dependency_links.txt
+TemporalBackbone_matnado.egg-info/top_level.txt
