@@ -13,6 +13,17 @@ How to install it
 pip install TemporalBackbone
 ```
 
+In order to run the library, additional packages should be installed
+
+```
+pip install wget 
+wget https://raw.githubusercontent.com/matnado/TemporalBackbone/main/TemporalBackbone/requirements.txt
+pip install -r requirements.txt
+```
+
+This implementation assumes that packages like `copy`, `collections`, and `time` are already present, because they cannot be installed via `pip install`. 
+
+
 How to run the package
 
 ```

@@ -2,7 +2,7 @@
 
 An efficient and fast tool to detect the backbone network in temporal networks. For accurate results, it should be applied to networks with at least 1,000 nodes.
 
-The computational time is O(N_E I_{max}^2), where N_E are the number of unique edges in the network and I_{max} the maximum number of intervals. I_{max} can be computed as T (total time steps) divided by the minimum length of the interval, I_{min}. 
+The computational time is O(N_E I_{max}^2), where N_E are the number of unique edges in the network and I_{max} the maximum number of intervals. I_{max} can be computed as T (total time steps) divided by the minimum length of the interval, \Delta I_{min}. 
 
 For sparse networks (like most of the large networks), the computational time is O(N I_{max}^2)
 
@@ -12,6 +12,17 @@ How to install it
 ```
 pip install TemporalBackbone
 ```
+
+In order to run the library, additional packages should be installed
+
+```
+pip install wget 
+wget https://raw.githubusercontent.com/matnado/TemporalBackbone/main/TemporalBackbone/requirements.txt
+pip install -r requirements.txt
+```
+
+This implementation assumes that packages like `copy`, `collections`, and `time` are already present, because they cannot be installed via `pip install`. 
+
 
 How to run the package
 
