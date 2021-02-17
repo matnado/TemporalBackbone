@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: TemporalBackbone
-Version: 0.1.2
+Version: 0.1.3
 Summary: A tool to detect the backbone in temporal networks
 Home-page: https://github.com/matnado/TemporalBackbone
 Author: Matthieu Nadini
@@ -10,7 +10,7 @@ Description: # A tool to detect the backbone in temporal networks
         
         An efficient and fast tool to detect the backbone network in temporal networks. For accurate results, it should be applied to networks with at least 1,000 nodes.
         
-        The computational time is O(N_E I_{max}^2), where N_E are the number of unique edges in the network and I_{max} the maximum number of intervals. I_{max} can be computed as T (total time steps) divided by the minimum length of the interval, I_{min}. 
+        The computational time is O(N_E I_{max}^2), where N_E are the number of unique edges in the network and I_{max} the maximum number of intervals. I_{max} can be computed as T (total time steps) divided by the minimum length of the interval, \Delta I_{min}. 
         
         For sparse networks (like most of the large networks), the computational time is O(N I_{max}^2)
         

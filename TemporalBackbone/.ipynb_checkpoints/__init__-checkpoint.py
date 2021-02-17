@@ -1,3 +1,6 @@
+import pip
+pip.main(['install', package])
+
 import pandas as pd
 import numpy as np
 import copy
@@ -6,6 +9,11 @@ import time
 import scipy.stats as stats
 from astropy.stats import bayesian_blocks
 import sys
+
+
+def install_packages()
+    sys.system('python -m pip freeze > requirements.txt')
+    sys.system('python -m pip install -r requirements.txt')
 
 
 def Read_sample():
@@ -116,9 +124,17 @@ def compute_weEADM_undirected(data, labels, alpha, Bonferroni):
     observed_weight = {}
     
     Intervals_list, I_number = Bayesian(data[labels[2]].to_list())
-
-    observed_weight = data.groupby([labels[0], labels[1]])[labels[2]].count().to_dict()
-    weEADM = {(source,dest):0. for source,dest in observed_weight}
+    
+    supp = data.groupby([labels[0], labels[1]])[labels[2]].count().to_dict()
+    observed_weight = {}
+    weEADM= {}
+    for source,dest in supp:
+        if source<dest: 
+            weEADM[(source,dest)] = observed_weight[(source, dest)]
+            weEADM[(source,dest)] = 0.
+        else: 
+            weEADM[(dest, source)] = observed_weight[(dest, source)]
+            weEADM[(dest,source)] = 0.
     
     data['bins'] = pd.cut(data[labels[2]], bins=Intervals_list)
     tot_links = data.groupby(['bins'])[labels[2]].count().to_dict()

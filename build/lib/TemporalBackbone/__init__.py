@@ -118,7 +118,10 @@ def compute_weEADM_undirected(data, labels, alpha, Bonferroni):
     Intervals_list, I_number = Bayesian(data[labels[2]].to_list())
 
     observed_weight = data.groupby([labels[0], labels[1]])[labels[2]].count().to_dict()
-    weEADM = {(source,dest):0. for source,dest in observed_weight}
+    weEADM= {}
+    for source,dest in observed_weight:
+        if source<dest: weEADM[(source,dest)] = 0.
+        else: weEADM[(dest,source)] = 0.
     
     data['bins'] = pd.cut(data[labels[2]], bins=Intervals_list)
     tot_links = data.groupby(['bins'])[labels[2]].count().to_dict()
