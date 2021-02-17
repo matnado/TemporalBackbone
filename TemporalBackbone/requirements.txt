@@ -1,10 +1,5 @@
 ###### Requirements without Version Specifiers ######
 pandas
 numpy
-copy
-collections
-time
 scipy
 astropy
-sys
-os

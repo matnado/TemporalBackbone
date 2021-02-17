@@ -1,19 +1,26 @@
-import pip
-pip.main(['install', package])
+'''
+These packages should be already installed by default
+'''
 
-import pandas as pd
-import numpy as np
+import requests
+import os
 import copy
 from collections import Counter, defaultdict
 import time
+
+'''
+New packages installed if not present
+'''
+
+file = requests.get('https://raw.githubusercontent.com/matnado/TemporalBackbone/main/TemporalBackbone/requirements.txt')
+packages = file.text.split('\n')[1:]
+for package in packages: 
+    os.system('pip install '+package)
+    
+import pandas as pd
+import numpy as np
 import scipy.stats as stats
 from astropy.stats import bayesian_blocks
-import sys
-
-
-def install_packages()
-    sys.system('python -m pip freeze > requirements.txt')
-    sys.system('python -m pip install -r requirements.txt')
 
 
 def Read_sample():
@@ -130,10 +137,10 @@ def compute_weEADM_undirected(data, labels, alpha, Bonferroni):
     weEADM= {}
     for source,dest in supp:
         if source<dest: 
-            weEADM[(source,dest)] = observed_weight[(source, dest)]
+            observed_weight[(source,dest)] = supp[(source, dest)]
             weEADM[(source,dest)] = 0.
         else: 
-            weEADM[(dest, source)] = observed_weight[(dest, source)]
+            observed_weight[(dest, source)] = supp[(source, dest)]
             weEADM[(dest,source)] = 0.
     
     data['bins'] = pd.cut(data[labels[2]], bins=Intervals_list)
