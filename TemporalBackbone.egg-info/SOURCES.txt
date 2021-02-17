@@ -1,6 +1,5 @@
 README.md
 setup.py
-TemporalBackbone/TemporalBackbone.py
 TemporalBackbone/__init__.py
 TemporalBackbone.egg-info/PKG-INFO
 TemporalBackbone.egg-info/SOURCES.txt

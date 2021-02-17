@@ -6,17 +6,13 @@ import time
 import scipy.stats as stats
 from astropy.stats import bayesian_blocks
 import sys
-#import requests
 
 
 def Read_sample():
-    #return pd.read_csv('https://github.com/matnado/TemporalBackbone/blob/main/TemporalBackbone/Sample.csv.gz')
-    url = 'https://github.com/matnado/TemporalBackbone/blob/main/TemporalBackbone/Sample.csv'
-    #request = requests.get(url)
-    #print(request.text)
-    return pd.read_csv(url, sep=";")
+    url = 'https://raw.githubusercontent.com/matnado/TemporalBackbone/main/TemporalBackbone/Sample.csv'
+    return pd.read_csv(url, error_bad_lines=False)
 
-def Temporal_Backbone(dataold, time_step = 60.*60.*24., is_directed=True, Bonferroni = True, alpha = 0.01):
+def Temporal_Backbone(dataold, I_min = 60.*60.*24., is_directed=True, Bonferroni = True, alpha = 0.01):
     '''
     Find the backbone in temporal networks where node vary their properties over time. 
     The methodology is first introduced in 
@@ -45,10 +41,8 @@ def Temporal_Backbone(dataold, time_step = 60.*60.*24., is_directed=True, Bonfer
     if len(labels)>3:
         sys.exit('Make sure that the order of the pandas dataframe is\n node1, node2, and time\n')
     
-    data = transform_time(data, labels, time_step)
+    data = transform_time(data, labels, I_min)
     
-    print(np.min(data[labels[2]]), np.max(data[labels[2]]))
-        
     if is_directed==True: return compute_weEADM_directed(data, labels, alpha, Bonferroni)
     else: return compute_weEADM_undirected(data, labels, alpha, Bonferroni)
 
@@ -92,7 +86,6 @@ def compute_weEADM_directed(data, labels, alpha, Bonferroni):
     observed_weight = {}
     
     Intervals_list, I_number = Bayesian(data[labels[2]].to_list())
-    print(I_number)
 
     observed_weight = data.groupby([labels[0], labels[1]])[labels[2]].count().to_dict()
     weEADM = {(source,dest):0. for source,dest in observed_weight}
@@ -147,7 +140,7 @@ def compute_weEADM_undirected(data, labels, alpha, Bonferroni):
     return filter_links(alpha, Bonferroni, weEADM, observed_weight) 
 
 
-def transform_time(data, labels, time_step):
+def transform_time(data, labels, I_min):
     '''
     Transform the time series in time steps of equal length. 
     '''
@@ -159,8 +152,8 @@ def transform_time(data, labels, time_step):
     except:
         print('Time is assumed to be in seconds\n')
         
-    min_time = np.min(data[labels[2]])-time_step/2.
+    min_time = np.min(data[labels[2]])-I_min/2.
     data[labels[2]] = data[labels[2]]-min_time
-    data[labels[2]] = data[labels[2]]/time_step
+    data[labels[2]] = data[labels[2]]/I_min
     data[labels[2]] = data[labels[2]].astype(int)  
     return data

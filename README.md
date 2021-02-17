@@ -2,9 +2,9 @@
 
 An efficient and fast tool to detect the backbone network in temporal networks. For accurate results, it should be applied to networks with at least 1,000 nodes.
 
-The computational time is O(N_E T^2), where N_E are the number unique edges in the network and T the number of time steps. 
+The computational time is O(N_E I_{max}^2), where N_E are the number of unique edges in the network and I_{max} the maximum number of intervals. I_{max} can be computed as T (total time steps) divided by the minimum length of the interval, I_{min}. 
 
-For sparse networks (like most of the large networks), the computational time is O(N T^2)
+For sparse networks (like most of the large networks), the computational time is O(N I_{max}^2)
 
 
 How to install it 
@@ -25,7 +25,7 @@ TB.Temporal_Backbone(data)
     
 Input: 
 - pandas dataframe with three columns: ***node1, node2, time*** *(order is important)*
-- Minimum length of the interval: ***default 1 day** (time step is taken from the data)*
+- $I_{min}$ minimum length of the interval: ***default 1 day** (time step is taken from the data)*
 - whether the network is directed or not: ***default True***
 - whether to use the Bonferroni correction: ***default True***
 - threshold to determine the significance of a link: ***default 0.01***
