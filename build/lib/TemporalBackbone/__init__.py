@@ -1,18 +1,24 @@
-import pandas as pd
-import numpy as np
+'''
+These packages should be already installed by default
+'''
 import copy
 from collections import Counter, defaultdict
 import time
+
+'''
+Packages installed if not present
+'''   
+import pandas as pd
+import numpy as np
 import scipy.stats as stats
 from astropy.stats import bayesian_blocks
-import sys
 
 
 def Read_sample():
     url = 'https://raw.githubusercontent.com/matnado/TemporalBackbone/main/TemporalBackbone/Sample.csv'
     return pd.read_csv(url, error_bad_lines=False)
 
-def Temporal_Backbone(dataold, I_min = 60.*60.*24., is_directed=True, Bonferroni = True, alpha = 0.01):
+def Temporal_Backbone(df, I_min = 60.*60.*24., is_directed=True, Bonferroni = True, alpha = 0.01):
     '''
     Find the backbone in temporal networks where node vary their properties over time. 
     The methodology is first introduced in 
@@ -25,17 +31,17 @@ def Temporal_Backbone(dataold, I_min = 60.*60.*24., is_directed=True, Bonferroni
     For sparse networks (like most of the large networks), the computational time is O(N T^2)
     
     Input: 
-    - pandas dataframe with three columns (order is important): node1, node2, time
-    - Minimum length of the interval (time step is taken from the data): default 1 day
-    - whether the network is directed or not: default True
-    - whether to use the Bonferroni correction: default True
-    - threshold to determine the significance of a link: default 0.01
+    - **df** pandas dataframe with three columns (order is important): node1, node2, time
+    - **I_min** Minimum length of the interval (time step is taken from the data): default 1 day
+    - **Bonferroni** whether the network is directed or not: default True
+    - **is_directed** whether to use the Bonferroni correction: default True
+    - **alpha** threshold to determine the significance of a link: default 0.01
     
     Output:
     - list with the significant links    
     '''
     
-    data = copy.deepcopy(dataold)
+    data = copy.deepcopy(df)
     
     labels = data.columns# first index is node1, second node2, and third time
     if len(labels)>3:
@@ -116,12 +122,17 @@ def compute_weEADM_undirected(data, labels, alpha, Bonferroni):
     observed_weight = {}
     
     Intervals_list, I_number = Bayesian(data[labels[2]].to_list())
-
-    observed_weight = data.groupby([labels[0], labels[1]])[labels[2]].count().to_dict()
+    
+    supp = data.groupby([labels[0], labels[1]])[labels[2]].count().to_dict()
+    observed_weight = {}
     weEADM= {}
-    for source,dest in observed_weight:
-        if source<dest: weEADM[(source,dest)] = 0.
-        else: weEADM[(dest,source)] = 0.
+    for source,dest in supp:
+        if source<dest: 
+            observed_weight[(source,dest)] = supp[(source, dest)]
+            weEADM[(source,dest)] = 0.
+        else: 
+            observed_weight[(dest, source)] = supp[(source, dest)]
+            weEADM[(dest,source)] = 0.
     
     data['bins'] = pd.cut(data[labels[2]], bins=Intervals_list)
     tot_links = data.groupby(['bins'])[labels[2]].count().to_dict()
