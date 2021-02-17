@@ -1,22 +1,13 @@
 '''
 These packages should be already installed by default
 '''
-
-import requests
-import os
 import copy
 from collections import Counter, defaultdict
 import time
 
 '''
-New packages installed if not present
-'''
-
-file = requests.get('https://raw.githubusercontent.com/matnado/TemporalBackbone/main/TemporalBackbone/requirements.txt')
-packages = file.text.split('\n')[1:]
-for package in packages: 
-    os.system('pip install '+package)
-    
+Packages installed if not present
+'''   
 import pandas as pd
 import numpy as np
 import scipy.stats as stats

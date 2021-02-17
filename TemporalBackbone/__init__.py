@@ -1,8 +1,6 @@
 '''
 These packages should be already installed by default
 '''
-import requests
-import os
 import copy
 from collections import Counter, defaultdict
 import time
