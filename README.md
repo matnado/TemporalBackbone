@@ -25,7 +25,7 @@ TB.Temporal_Backbone(data)
     
 Input: 
 - pandas dataframe with three columns: ***node1, node2, time*** *(order is important)*
-- $I_{min}$ minimum length of the interval: ***default 1 day** (time step is taken from the data)*
+- I_{min} minimum length of the interval, written in seconds: ***default 1 day or 60x60x24 seconds** (time step is taken from the data)*
 - whether the network is directed or not: ***default True***
 - whether to use the Bonferroni correction: ***default True***
 - threshold to determine the significance of a link: ***default 0.01***
